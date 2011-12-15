@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Test</title>
+    <script src="src/utils/Language.js"></script>
+    <script src="src/utils/Math.js"></script>
+    <script src="src/utils/Color.js"></script>
+    <script src="src/utils/Attributes.js"></script>
+    <script src="src/sprite/Sprite.js"></script>
+    <script src="src/sprite/RectSprite.js"></script>
+    <script src="src/sprite/EllipseSprite.js"></script>
+    <script src="src/sprite/ImageSprite.js"></script>
+    <script src="src/sprite/TextSprite.js"></script>
+    <script src="src/device/Canvas.js"></script>
+    <script src="src/device/Html.js"></script>
+    <script src="src/surface/Surface.js"></script>
+    <style type="text/css">
+        #space2 {
+            -webkit-transition-property: opacity;
+            -webkit-transition-duration: 0.5s;
+            position: relative
+        }
+        #space2 canvas {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="space2" ></div>
+<script type="text/javascript">
+    var space2 = document.getElementById('space2');
+    var split = 0.65, bezier = new Bezier3(0, 0.72, 0.13, 1);
+    plotB(space2, 0, 0, 400, 300, bezier, 'red');
+    plotB(space2, 0, 0, 400 * split, 300, bezier.left(split));
+    plotB(space2, 400 * split, 0, 400 * (1 - split), 300, bezier.right(split));
+</script>
+</body>
+</html>
