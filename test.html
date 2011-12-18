@@ -5,6 +5,7 @@
     <title>Test</title>
     <script src="src/utils/Language.js"></script>
     <script src="src/utils/Math.js"></script>
+    <script src="src/utils/Bezier.js"></script>
     <script src="src/utils/Color.js"></script>
     <script src="src/utils/Attributes.js"></script>
     <script src="src/sprite/Sprite.js"></script>
@@ -29,11 +30,16 @@
 <body>
 <div id="space2" ></div>
 <script type="text/javascript">
-    var space2 = document.getElementById('space2');
-    var split = 0.65, bezier = new Bezier3(0, 0.72, 0.13, 1);
-    plotB(space2, 0, 0, 400, 300, bezier, 'red');
-    plotB(space2, 0, 0, 400 * split, 300, bezier.left(split));
-    plotB(space2, 400 * split, 0, 400 * (1 - split), 300, bezier.right(split));
+    var space2 = document.getElementById('space2'),
+        canvas = document.createElement('canvas'),
+        ctx = canvas.getContext('2d'), 
+        c = new BezierCurve(0, 0, 0.1, 1.5, 0.9, 0.3, 1, 0);
+    space2.appendChild(canvas);
+    var width = canvas.width = 400;
+    var height = canvas.height = 300;
+    c.plot(canvas);
+    var bbox = c.bbox();
+    ctx.strokeRect(bbox.x * width, height - (bbox.y + bbox.height) * height, bbox.width * width, bbox.height * height);
 </script>
 </body>
 </html>
